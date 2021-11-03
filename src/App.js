@@ -8,7 +8,10 @@ const {
   mongo: { URI },
   auth: { cookieSessionSecret, cookieSessionExpiration },
 } = require("./config/keys");
-const db = require("./models");
+const {
+  mongoose,
+  auth: { role: Role },
+} = require("./models");
 
 class App {
   constructor() {
@@ -18,9 +21,7 @@ class App {
   }
 
   dbInit = () => {
-    const Role = db.role;
-
-    db.mongoose
+    mongoose
       .connect(URI)
       .then(() => {
         console.log("Successfully connected to the Database !");

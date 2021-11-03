@@ -1,5 +1,7 @@
 const passport = require("passport");
-const { user: User } = require("../../models");
+const {
+  auth: { user: User },
+} = require("../../models");
 const userSerializer = require("./user.serializer");
 const userDeserializer = require("./user.deserializer");
 

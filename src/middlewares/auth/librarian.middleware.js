@@ -1,4 +1,6 @@
-const { user: User, role: Role } = require("../../models");
+const {
+  auth: { user: User, role: Role },
+} = require("../../models");
 
 const isLibrarian = (req, res, next) => {
   User.findById(req.user._id).exec((err, user) => {

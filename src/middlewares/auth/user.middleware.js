@@ -1,4 +1,6 @@
-const { user: User, role: Role } = require("../../models");
+const {
+  auth: { user: User, role: Role },
+} = require("../../models");
 
 const isUser = (req, res, next) => {
   if (!req.user) {

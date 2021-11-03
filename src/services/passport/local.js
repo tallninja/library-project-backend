@@ -3,7 +3,9 @@ const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
 
 const { auth: authSerializers } = require("../../serializers");
-const { user: User } = require("../../models");
+const {
+  auth: { user: User },
+} = require("../../models");
 
 const customFields = {
   usernameField: "email",
