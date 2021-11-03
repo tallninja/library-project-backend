@@ -1,8 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
 
-const keys = require("./config/keys");
+const {
+  mongo: { URI },
+  auth: { cookieSessionSecret, cookieSessionExpiration },
+} = require("./config/keys");
 const db = require("./models");
 
 class App {
@@ -16,7 +21,7 @@ class App {
     const Role = db.role;
 
     db.mongoose
-      .connect(keys.mongo.URI)
+      .connect(URI)
       .then(() => {
         console.log("Successfully connected to the Database !");
       })
@@ -61,6 +66,14 @@ class App {
     this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json()); // replaced bodyparser
+    this.app.use(
+      cookieSession({
+        maxAge: cookieSessionExpiration,
+        keys: [cookieSessionSecret],
+      })
+    );
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
     this.app.use(morgan("dev")); // used to log client requests for development porposes
     this.dbInit();
   };

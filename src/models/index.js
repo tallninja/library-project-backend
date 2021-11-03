@@ -4,7 +4,6 @@ const db = {
   mongoose: mongoose,
   role: require("./Role"),
   user: require("./User"),
-  refreshToken: require("./RefreshToken"),
   ROLES: ["user", "admin", "librarian"],
 };
 

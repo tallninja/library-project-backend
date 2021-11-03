@@ -1,9 +1,8 @@
 const router = require("express").Router();
-
 const {
-  auth: { refreshToken },
+  auth: { signout },
 } = require("../../controllers");
 
-router.post("/", refreshToken);
+router.get("/", signout);
 
 module.exports = router;

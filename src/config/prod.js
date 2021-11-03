@@ -3,8 +3,7 @@ module.exports = {
     URI: process.env.MONGO_URI,
   },
   auth: {
-    jwtSecret: process.env.AUTH_SECRET,
-    jwtExpiration: 60 * 60, // 1 hour
-    jwtRefreshExpiration: 60 * 60 * 24, // 24 hours
+    cookieSessionSecret: process.env.AUTH_SECRET,
+    cookieSessionExpiration: 60 * 60 * 24, // 24 hours
   },
 };
