@@ -35,6 +35,23 @@ BorrowedBookSchema.statics.borrow = async function ({ user, book }) {
   };
 };
 
+BorrowedBookSchema.statics.return = function ({ user, book }, callBack) {
+  let response = {};
+  this.findOneAndDelete(
+    {
+      book: book,
+      user: user,
+    },
+    (err) => {
+      if (err) {
+        return callBack({ message: err });
+      }
+      return callBack({ message: "The book has been returned!" });
+    }
+  );
+  return response;
+};
+
 BorrowedBookSchema.statics.verifyExpiration = (borrowedBook) => {
   return borrowedBook.returnDate.getTime() > new Date.getTime();
 };

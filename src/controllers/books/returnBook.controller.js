@@ -4,16 +4,13 @@ const {
 
 const returnBook = (req, res) => {
   const { book } = req.body;
-  const { _id } = req.user;
+  const { _id: user } = req.user;
 
-  BorrowedBook.findOneAndDelete({
-    book: book,
-    user: _id,
-  }).exec((err) => {
-    if (err) {
-      return res.status(500).json({ message: err.message });
+  BorrowedBook.return({ user, book }, (response) => {
+    if (response.error) {
+      return res.status(500).json(response);
     }
-    res.status(200).json({ message: "The book has been returned!" });
+    res.status(200).json(response);
   });
 };
 
