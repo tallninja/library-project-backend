@@ -1,9 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
 
-const keys = require("./config/keys");
-const db = require("./models");
+const {
+  auth: { cookieSessionSecret, cookieSessionExpiration },
+} = require("./config/keys");
+const { dbInit } = require("./models");
 
 class App {
   constructor() {
@@ -12,57 +16,23 @@ class App {
     this.routes = require("./routes");
   }
 
-  dbInit = () => {
-    const Role = db.role;
-
-    db.mongoose
-      .connect(keys.mongo.URI)
-      .then(() => {
-        console.log("Successfully connected to the Database !");
-      })
-      .catch((err) => {
-        console.error("Failed to connect to the Database !", err);
-      });
-
-    Role.estimatedDocumentCount((err, count) => {
-      if (!err && count === 0) {
-        new Role({
-          name: "user",
-        }).save((err) => {
-          if (err) {
-            console.error("error", err);
-          } else {
-            console.log("Successfully created 'user' role !");
-          }
-        });
-        new Role({
-          name: "librarian",
-        }).save((err) => {
-          if (err) {
-            console.error("error", err);
-          } else {
-            console.log("Successfully created 'librarian' role !");
-          }
-        });
-        new Role({
-          name: "admin",
-        }).save((err) => {
-          if (err) {
-            console.error("error", err);
-          } else {
-            console.log("Successfully created 'admin' role !");
-          }
-        });
-      }
-    });
-  };
-
   setup = () => {
-    this.app.use(cors());
+    this.app.use(cors()); // handle CORS requests
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json()); // replaced bodyparser
+    this.app.use(
+      cookieSession({
+        maxAge: cookieSessionExpiration,
+        keys: [cookieSessionSecret],
+      })
+    );
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
+    if (process.env.NODE_ENV === "production") {
+      this.app.use(morgan("combined"));
+    }
     this.app.use(morgan("dev")); // used to log client requests for development porposes
-    this.dbInit();
+    dbInit();
   };
 
   run = () => {
@@ -75,7 +45,7 @@ class App {
       if (err) {
         console.error(err);
       } else {
-        console.log(`Server lstening on PORT=${this.PORT}`);
+        console.log(`Server listening on PORT=${this.PORT}`);
       }
     });
   };

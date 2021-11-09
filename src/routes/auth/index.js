@@ -1,11 +1,13 @@
 const router = require("express").Router();
 
-const signupRoute = require("./signup");
-const signinRoute = require("./signin");
-const refreshTokenRoute = require("./refreshToken");
+const signupRoute = require("./signup.route");
+const signinRoute = require("./signin.route");
+const signoutRoute = require("./signout.route");
+const profileRoute = require("./profile.route");
 
 router.use("/signup", signupRoute);
 router.use("/signin", signinRoute);
-router.use("/refresh-token", refreshTokenRoute);
+router.use("/signout", signoutRoute);
+router.use("/profile", profileRoute);
 
 module.exports = router;

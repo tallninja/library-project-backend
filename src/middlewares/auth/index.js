@@ -1,4 +1,6 @@
 module.exports = {
   signup: require("./signup.middleware"),
-  jwt: require("./jwt.middleware"),
+  isUser: require("./user.middleware"),
+  isLibrarian: require("./librarian.middleware"),
+  isAdmin: require("./admin.middleware"),
 };

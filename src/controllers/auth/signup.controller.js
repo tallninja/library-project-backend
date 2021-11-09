@@ -1,6 +1,6 @@
-const db = require("../../models");
-const User = db.user;
-const Role = db.role;
+const {
+  auth: { user: User, role: Role },
+} = require("../../models");
 
 let bcrypt = require("bcrypt");
 

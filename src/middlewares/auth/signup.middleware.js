@@ -1,7 +1,6 @@
-const db = require("../../models");
-
-const ROLES = db.ROLES;
-const User = db.user;
+const {
+  auth: { ROLES, user: User },
+} = require("../../models");
 
 const checkDuplicateEmail = (req, res, next) => {
   const { email } = req.body;
