@@ -1,3 +1,3 @@
 module.exports = {
-  local: require("./local"),
+  local: require("./passport.local.service"),
 };

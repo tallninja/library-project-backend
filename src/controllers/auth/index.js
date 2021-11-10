@@ -3,4 +3,6 @@ module.exports = {
   signin: require("./signin.controller"),
   signout: require("./signout.controller"),
   profile: require("./profile.controller"),
+  forgotPassword: require("./forgotPassword.controller"),
+  resetPassword: require("./resetPassword.controller"),
 };
