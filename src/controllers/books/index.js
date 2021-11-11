@@ -7,4 +7,12 @@ module.exports = {
   borrowBook: require("./borrowBook.controller"),
   returnBook: require("./returnBook.controller"),
   bookCategory: require("./bookCategory"),
+  getAllBorrowedBooks: require("./getAllBorrowedBooks.controller"),
+  getAllDefaultedBooks: require("./getAllDefaultedBooks.controller"),
+  getUserBorrowedBooks: require("./getUserBorrowedBooks.controller"),
+  getUserDefaultedBooks: require("./getUserDefaultedBooks.controller"),
+  getAllCurrentlyBorrowedBooks: require("./getAllCurrentlyBorrowedBooks.controller"),
+  getAllCurrentlyDefaultedBooks: require("./getAllCurrentlyDefaultedBooks.controller"),
+  getUserCurrentlyBorrowedBooks: require("./getUserCurrentlyBorrowedBooks.controller"),
+  getUserCurrentlyDefaultedBooks: require("./getUserCurrentlyDefaultedBooks.controller"),
 };
