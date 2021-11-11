@@ -9,6 +9,7 @@ const borrowBook = (req, res) => {
   BorrowedBook.findOne(
     {
       book: book,
+      returned: false,
     },
     async (err, borrowedBook) => {
       if (err) {

@@ -11,7 +11,7 @@ router.use("/signup", signupRoute);
 router.use("/signin", signinRoute);
 router.use("/signout", signoutRoute);
 router.use("/profile", profileRoute);
-router.use("/forgotpassword", forgotPasswordRoute);
-router.use("/resetpassword", resetPasswordRoute);
+router.use("/forgot-password", forgotPasswordRoute);
+router.use("/reset-password", resetPasswordRoute);
 
 module.exports = router;

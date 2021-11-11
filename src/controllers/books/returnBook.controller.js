@@ -10,7 +10,7 @@ const returnBook = (req, res) => {
     if (response.error) {
       return res.status(500).json(response);
     }
-    res.status(200).json(response);
+    return res.status(200).json(response);
   });
 };
 

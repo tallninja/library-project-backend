@@ -8,6 +8,7 @@ module.exports = {
   },
   book: {
     borrowPeriod: 60 * 60 * 24 * 7, // 7 days
+    defaultPaymentRate: 100, // 100 shillings per day
   },
   email: {
     SERVICE: process.env.SERVICE,
@@ -16,5 +17,9 @@ module.exports = {
     USER: process.env.USER,
     PASSWORD: process.env.PASSWORD,
     BASE_URL: process.env.BASE_URL,
+  },
+  stripe: {
+    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+    secretKey: process.env.STRIPE_SECRET_KEY,
   },
 };

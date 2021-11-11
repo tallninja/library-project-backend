@@ -91,8 +91,10 @@ const db = {
     bookCategory: require("./BookCategory"),
     bookType: BookType,
     borrowedBook: require("./BorrowedBook"),
+    defaultedBook: require("./DefaultedBook.model"),
     TYPES: ["hard-copy", "soft-copy"],
   },
+  payment: require("./Payment.model"),
 };
 
 module.exports = db;

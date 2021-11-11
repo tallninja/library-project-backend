@@ -26,7 +26,7 @@ const forgotPassword = (req, res) => {
       if (err) {
         return res.status(500).json({ message: "User does not exist !" });
       }
-      const link = `${BASE_URL}/api/auth/resetpassword?id=${user._id}`;
+      const link = `${BASE_URL}/api/auth/reset-password?id=${user._id}`;
       sendEmail(user.email, "Password Reset", link, (err, info) => {
         if (err) {
           console.error("Failed to send email !", err);
