@@ -2,7 +2,10 @@ const router = require("express").Router();
 const {
   books: { getUserCurrentlyDefaultedBooks },
 } = require("../../../controllers");
+const {
+  auth: { isUser },
+} = require("../../../middlewares");
 
-router.get("/", getUserCurrentlyDefaultedBooks);
+router.get("/", [isUser], getUserCurrentlyDefaultedBooks);
 
 module.exports = router;
