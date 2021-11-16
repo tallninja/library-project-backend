@@ -83,7 +83,7 @@ BorrowedBookSchema.statics.return = function (
 
         const defaultedBook = new DefaultedBook({
           user: user,
-          book: returnedBook._id,
+          book: returnedBook.book,
           borrowDate: returnedBook.borrowDate,
           returnDate: returnedBook.returnDate,
           actualReturnDate: returnedBook.actualReturnDate,

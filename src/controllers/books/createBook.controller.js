@@ -4,6 +4,7 @@ const {
 
 const createBook = (req, res) => {
   const data = req.body;
+
   const book = new Book({
     title: data.title,
     categories: data.categories,

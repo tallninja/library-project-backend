@@ -27,5 +27,8 @@
     "passport-local": "^1.0.0",
     "stripe": "^8.186.1",
     "uuid": "^8.3.2"
+  },
+  "engines": {
+    "node": "14.15.1"
   }
 }

@@ -11,9 +11,9 @@ module.exports = {
     defaultPaymentRate: 100, // 100 shillings per day
   },
   email: {
-    SERVICE: process.env.SERVICE,
-    HOST: process.env.HOST,
-    PORT: process.env.PORT,
+    SERVICE: "Gmail",
+    HOST: "smtp.gmail.com",
+    PORT: 587,
     USER: process.env.USER,
     PASSWORD: process.env.PASSWORD,
     BASE_URL: process.env.BASE_URL,
