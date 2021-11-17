@@ -7,12 +7,12 @@ const getUserDefaultedBooks = (req, res) => {
     user: req.user._id,
   })
     .populate("book")
-    .exec((err, userDefaultedBooks) => {
+    .exec((err, defaultedBooks) => {
       if (err) {
         console.error("Error fetching user defaulted books !", err);
         return res.status(500).json({ message: err });
       }
-      return res.status(200).json({ userDefaultedBooks });
+      return res.status(200).json({ defaultedBooks });
     });
 };
 

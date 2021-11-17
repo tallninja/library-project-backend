@@ -7,12 +7,12 @@ const getUserBorrowedBooks = (req, res) => {
     user: req.user.id,
   })
     .populate("book")
-    .exec((err, userBorrowedBooks) => {
+    .exec((err, borrowedBooks) => {
       if (err) {
         console.error("Error fetching the user's borrowed books !");
         return res.status(500).json({ message: err });
       }
-      return res.status(200).json({ userBorrowedBooks });
+      return res.status(200).json({ borrowedBooks });
     });
 };
 
