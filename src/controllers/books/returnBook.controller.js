@@ -3,8 +3,8 @@ const {
 } = require("../../models");
 
 const returnBook = (req, res) => {
-  const { book } = req.body;
-  const { _id: user } = req.user;
+  const { book, user } = req.body;
+  // const { _id: user } = req.user;
 
   BorrowedBook.return({ user, book }, (response) => {
     if (response.error) {

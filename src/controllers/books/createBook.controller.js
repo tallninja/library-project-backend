@@ -16,6 +16,7 @@ const createBook = (req, res) => {
     pages: data.pages,
     edition: data.edition,
     issueType: data.issueType,
+    imageURL: data.imageURL,
     link: data.link,
   });
 
