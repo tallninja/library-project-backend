@@ -14,7 +14,7 @@ const signin = (req, res, next) => {
       if (e) {
         return next(e);
       }
-      return res.status(200).json({ message: "Login Successfull !" });
+      return res.status(200).json({ message: "Login Successfull !", user });
     });
   })(req, res, next);
 };
