@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const {
-  mongo: { URI },
+  mongo: { MONGO_URI },
 } = require("../config/keys");
 
 const Role = require("./Role");
@@ -67,7 +67,7 @@ initializeBookTypes = () => {
 
 const dbInit = () => {
   mongoose
-    .connect(URI)
+    .connect(MONGO_URI)
     .then(() => {
       console.log("Successfully connected to the Database !");
     })
