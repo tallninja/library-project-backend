@@ -3,7 +3,6 @@ const {
 } = require("../../models");
 
 const isLibrarian = (req, res, next) => {
-  console.log(req.user);
   User.findById(req.user._id).exec((err, user) => {
     if (err) {
       return res.status(500).json({ message: err });
