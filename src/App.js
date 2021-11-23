@@ -17,7 +17,7 @@ class App {
   }
 
   setup = () => {
-    // this.app.use(cors()); // handle CORS requests
+    this.app.use(cors()); // handle CORS requests
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json()); // replaced bodyparser
     this.app.use(
