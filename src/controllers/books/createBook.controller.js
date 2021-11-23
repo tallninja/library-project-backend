@@ -7,7 +7,7 @@ const createBook = (req, res) => {
 
   const book = new Book({
     title: data.title,
-    categories: data.categories,
+    category: data.category,
     isbn10: data.isbn10,
     isbn13: data.isbn13,
     author: data.author,

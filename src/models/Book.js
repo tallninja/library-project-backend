@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 
 const BookSchema = new mongoose.Schema({
   title: String,
-  categories: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "book-categories",
-    },
-  ],
+  categories: {
+    type: String,
+    required: true,
+  },
   isbn10: String,
   isbn13: String,
   author: String,
@@ -19,6 +17,7 @@ const BookSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "book-types",
   },
+  imageURL: String,
   link: String,
 });
 
