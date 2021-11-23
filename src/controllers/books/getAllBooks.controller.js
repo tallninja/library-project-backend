@@ -4,7 +4,6 @@ const {
 
 const getAllBooks = (req, res) => {
   Book.find()
-    .populate("categories")
     .populate("issueType")
     .exec((err, books) => {
       if (err) {

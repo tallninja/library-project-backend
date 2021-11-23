@@ -4,7 +4,7 @@ module.exports = {
   },
   auth: {
     cookieSessionSecret: process.env.AUTH_SECRET,
-    cookieSessionExpiration: 1000 * 60 * 60 * 24 * 1, // 1 day
+    cookieSessionExpiration: 1000 * 60 * 60 * 24 * 7, // 7 days
   },
   book: {
     borrowPeriod: 60 * 60 * 24 * 7, // 7 days
