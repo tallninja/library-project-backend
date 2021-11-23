@@ -17,7 +17,18 @@ class App {
   }
 
   setup = () => {
-    this.app.use(cors()); // handle CORS requests
+    const whitelist = ["http://localhost:3000"];
+    const corsOptions = {
+      origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
+    };
+
+    this.app.use(cors(corsOptions)); // handle CORS requests
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json()); // replaced bodyparser
     this.app.use(
