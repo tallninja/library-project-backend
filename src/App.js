@@ -26,6 +26,7 @@ class App {
           callback(new Error("Not allowed by CORS"));
         }
       },
+      credentials: true,
     };
 
     this.app.use(cors(corsOptions)); // handle CORS requests
