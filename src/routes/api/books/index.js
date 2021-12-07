@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const getAllBooksRoute = require("./getAllBooks.route");
+const searchBookRoute = require("./searchBook.route");
 const getBookRoute = require("./getBook.route");
 const createBookRoute = require("./createBook.route");
 const editBookRoute = require("./editBook.route");
@@ -18,6 +19,7 @@ const getUserCurrentlyBorrowedBooksRoute = require("./getUserCurrentlyBorrowedBo
 const getUserCurrentlyDefaultedBooksRoute = require("./getUserCurrentlyDefaultedBooks.route");
 
 router.use("/all", getAllBooksRoute);
+router.use("/search", searchBookRoute);
 router.use("/book", getBookRoute);
 router.use("/create", createBookRoute);
 router.use("/edit", editBookRoute);

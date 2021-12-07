@@ -1,6 +1,7 @@
 module.exports = {
   getBook: require("./getBook.controller"),
   getAllBooks: require("./getAllBooks.controller"),
+  searchBook: require("./searchBook.controller"),
   createBook: require("./createBook.controller"),
   editBook: require("./editBook.controller"),
   deleteBook: require("./deleteBook.controller"),
