@@ -3,9 +3,9 @@ const {
   books: { editBook },
 } = require("../../../controllers");
 const {
-  auth: { isLibrarian },
+  auth: { isLibrarian, isUser },
 } = require("../../../middlewares");
 
-router.patch("/", [isLibrarian], editBook);
+router.patch("/", [isUser, isLibrarian], editBook);
 
 module.exports = router;

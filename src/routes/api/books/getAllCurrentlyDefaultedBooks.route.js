@@ -3,9 +3,9 @@ const {
   books: { getAllCurrentlyDefaultedBooks },
 } = require("../../../controllers");
 const {
-  auth: { isLibrarian },
+  auth: { isLibrarian, isUser },
 } = require("../../../middlewares");
 
-router.get("/", [isLibrarian], getAllCurrentlyDefaultedBooks);
+router.get("/", [isUser, isLibrarian], getAllCurrentlyDefaultedBooks);
 
 module.exports = router;

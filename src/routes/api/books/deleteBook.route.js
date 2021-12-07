@@ -3,9 +3,9 @@ const {
   books: { deleteBook },
 } = require("../../../controllers");
 const {
-  auth: { isLibrarian },
+  auth: { isLibrarian, isUser },
 } = require("../../../middlewares");
 
-router.delete("/", [isLibrarian], deleteBook);
+router.delete("/", [isUser, isLibrarian], deleteBook);
 
 module.exports = router;

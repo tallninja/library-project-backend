@@ -3,9 +3,9 @@ const {
   books: { createBook },
 } = require("../../../controllers");
 const {
-  auth: { isLibrarian },
+  auth: { isLibrarian, isUser },
 } = require("../../../middlewares");
 
-router.post("/", [isLibrarian], createBook);
+router.post("/", [isUser, isLibrarian], createBook);
 
 module.exports = router;
