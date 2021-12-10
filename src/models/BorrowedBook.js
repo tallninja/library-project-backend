@@ -3,6 +3,7 @@ const {
   book: { borrowPeriod },
 } = require("../config/keys");
 const DefaultedBook = require("./DefaultedBook.model");
+const Book = require("./Book");
 const { calculateDays, calculateAmount } = require("../utils");
 
 const BorrowedBookSchema = new mongoose.Schema({
@@ -38,16 +39,14 @@ BorrowedBookSchema.statics.borrow = async function ({ user, book }) {
 
   let _object = new this({
     user: user,
-    book: book,
+    book: book._id,
     borrowDate: new Date().getTime(),
     returnDate: returnAt.getTime(),
   });
 
-  let borrowedBook = await _object.save();
+  await _object.save();
 
-  return {
-    book: borrowedBook._id,
-  };
+  return { book };
 };
 
 // returns the book: sets the status of the book to returned
@@ -55,7 +54,7 @@ BorrowedBookSchema.statics.return = function (
   { user, book: borrowedBook },
   callback
 ) {
-  const actualReturnDate = new Date();
+  const actualReturnDate = new Date(2021, 12, 30);
   this.findOneAndUpdate(
     {
       book: borrowedBook,
@@ -67,9 +66,12 @@ BorrowedBookSchema.statics.return = function (
       returned: true,
     },
     { new: true },
-    (err, returnedBook) => {
+    async (err, returnedBook) => {
       if (err) {
         return callback({ message: err });
+      }
+      if (!returnedBook) {
+        return callback({ message: "Could not find book !" });
       }
       if (
         returnedBook.returnDate.getTime() <
@@ -91,7 +93,7 @@ BorrowedBookSchema.statics.return = function (
           amountToBePaid: amountToBePaid,
         });
 
-        defaultedBook.save((err, defaultedBook) => {
+        await defaultedBook.save((err, defaultedBook) => {
           if (err) {
             console.error("Error creating defaulted book entry !", err);
             return callback({ message: err });
@@ -102,8 +104,9 @@ BorrowedBookSchema.statics.return = function (
             message: `You have defaulted for ${numberOfDaysDefaulted} days and you are required to pay Ksh ${amountToBePaid}`,
           });
         });
+      } else {
+        return callback({ message: "The book has been returned!" });
       }
-      return callback({ message: "The book has been returned!" });
     }
   );
 };
