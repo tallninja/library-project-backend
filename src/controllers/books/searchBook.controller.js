@@ -3,11 +3,12 @@ const {
 } = require("../../models");
 
 const searchBook = (req, res) => {
-  const { queryString } = req.body;
+  const { queryString } = req.query;
 
   Book.find({
     $or: [
       { title: { $regex: queryString, $options: "i" } },
+      { category: { $regex: queryString, $options: "i" } },
       { author: { $regex: queryString, $options: "i" } },
       { publisher: { $regex: queryString, $options: "i" } },
       { isbn10: { $regex: queryString, $options: "i" } },
