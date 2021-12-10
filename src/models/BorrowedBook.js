@@ -54,7 +54,7 @@ BorrowedBookSchema.statics.return = function (
   { user, book: borrowedBook },
   callback
 ) {
-  const actualReturnDate = new Date(2021, 12, 30);
+  const actualReturnDate = new Date();
   this.findOneAndUpdate(
     {
       book: borrowedBook,
